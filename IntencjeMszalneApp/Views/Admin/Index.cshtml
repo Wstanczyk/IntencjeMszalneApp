@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Intention>
+
+@{
+    ViewData["Title"] = "Panel administracyjny";
+}
+
+<h2>Lista intencji</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Msza</th>
+            <th>Użytkownik</th>
+            <th>Intencja</th>
+            <th>Data</th>
+            <th>Akcje</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var intention in Model)
+        {
+            <tr>
+                <td>@intention.Mass.Date @intention.Mass.Time</td>
+                <td>@intention.User.Email</td>
+                <td>@intention.IntentionText</td>
+                <td>@intention.CreatedAt</td>
+                <td>
+                    <a class="btn btn-danger" href="@Url.Action("Delete", "Admin", new { id = intention.Id })">Usuń</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

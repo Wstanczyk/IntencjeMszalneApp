@@ -1,0 +1,26 @@
+﻿@model Intention
+
+@{
+    ViewData["Title"] = "Zarezerwuj Intencję";
+}
+
+<h2>Zarezerwuj Intencję</h2>
+
+<form asp-action="Reserve" method="post">
+    <div class="form-group">
+        <label for="MassId">Msza:</label>
+        <select name="MassId" class="form-control">
+            @foreach (var mass in ViewBag.Masses)
+            {
+                <option value="@mass.Id">@mass.Date @mass.Time</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="IntentionText">Treść intencji:</label>
+        <textarea name="IntentionText" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Zarezerwuj</button>
+</form>
