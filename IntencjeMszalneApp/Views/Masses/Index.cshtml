@@ -4,42 +4,39 @@
     ViewData["Title"] = "Rezerwacja Mszy";
 }
 
-<h2>Dostępne Msze</h2>
+<div class="container mt-4">
+    <h2 class="mb-4">Dostępne Msze</h2>
 
-<!-- Filtracja po dacie -->
-<form method="get">
-    <label for="filterDate">Filtruj po dacie:</label>
-    <input type="date" name="filterDate" value="@Context.Request.Query["filterDate"]" />
-    <button type="submit" class="btn btn-secondary">Filtruj</button>
-</form>
+    <!-- Filtracja po dacie -->
+    <div class="filter-container">
+        <form method="get">
+            <input type="date" name="filterDate" value="@Context.Request.Query["filterDate"]" class="form-control" />
+            <button type="submit" class="btn btn-secondary">Filtruj</button>
+        </form>
+    </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Data</th>
-            <th>Godzina</th>
-            <th>Wolne miejsca</th>
-            <th>Akcje</th>
-        </tr>
-    </thead>
-    <tbody>
+    <div class="row">
         @foreach (var mass in Model)
         {
-            <tr>
-                <td>@mass.Date.ToShortDateString()</td>
-                <td>@mass.Time</td>
-                <td>@(mass.MaxIntentions - mass.Intentions.Count)</td>
-                <td>
+            <div class="col-md-4">
+                <div class="mass-card">
+                    <h5>@mass.Date.ToString("dd MMMM yyyy") - @mass.Time</h5>
+                    <p><strong>Wolne miejsca:</strong> @(mass.MaxIntentions - mass.Intentions.Count)</p>
+
                     @if (mass.Intentions.Count < mass.MaxIntentions)
                     {
-                        <a class="btn btn-success" href="@Url.Action("Reserve", "Masses", new { massId = mass.Id })">Zarezerwuj intencję</a>
+                        <form action="@Url.Action("Reserve", "Masses")" method="post">
+                            <input type="hidden" name="massId" value="@mass.Id" />
+                            <input type="text" name="intentionText" class="form-control mb-2" placeholder="Treść intencji" required />
+                            <button type="submit">Zarezerwuj</button>
+                        </form>
                     }
                     else
                     {
-                        <span class="text-danger">Brak miejsc</span>
+                        <p class="text-danger">Brak miejsc</p>
                     }
-                </td>
-            </tr>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>

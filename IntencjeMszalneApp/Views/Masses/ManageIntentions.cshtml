@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Intention>
+
+@{
+    ViewData["Title"] = "Zarządzanie intencjami";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/ManageIntentions.css" />
+}
+
+<h2>Zarządzanie intencjami</h2>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>Msza</th>
+            <th>Intencja</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var intention in Model)
+        {
+            <tr>
+                <td>@intention.Id</td>
+                <td>@intention.Mass.Date.ToShortDateString()</td>
+                <td>@intention.IntentionText</td>
+                <td>
+                    <form method="post" action="@Url.Action("DeleteIntention", "Masses")" class="d-inline">
+                        <input type="hidden" name="intentionId" value="@intention.Id" />
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć tę intencję?');">
+                            Usuń
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

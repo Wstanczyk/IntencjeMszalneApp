@@ -1,22 +1,112 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Podstawowe ustawienia */
 body {
-  margin-bottom: 60px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #343a40;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+    /* Nag³ówki */
+    h2.text-center {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+/* Przycisk */
+.btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+.btn-outline-secondary {
+    border: 1px solid #6c757d;
+    color: #6c757d;
+}
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        color: #fff;
+    }
+
+/* Tabela */
+.table {
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+    .table th, .table td {
+        padding: 0.75rem;
+        text-align: left;
+    }
+
+    .table th {
+        background-color: #f1f1f1;
+        font-weight: bold;
+    }
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Formularze */
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.375rem;
+}
+
+.form-control-sm {
+    font-size: 0.875rem;
+}
+
+/* Responsywnoœæ */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.lead {
+    font-size: 1.25rem;
+    color: #6c757d;
+}
+
+/* Kolory */
+.text-danger {
+    color: #dc3545;
 }

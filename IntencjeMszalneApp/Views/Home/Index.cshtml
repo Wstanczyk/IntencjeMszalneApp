@@ -2,6 +2,19 @@
     ViewData["Title"] = "Strona Główna";
 }
 
-<h2>Witamy w systemie rezerwacji intencji mszalnych</h2>
-<p>Wybierz msze i zarezerwuj intencję.</p>
-<a class="btn btn-primary" href="@Url.Action("Index", "Masses")">Przejdź do rezerwacji</a>
+<div class="home-container">
+    <h1>Witamy w systemie rezerwacji intencji mszalnych</h1>
+    <p>Wybierz mszę i zarezerwuj intencję.</p>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>Witaj, @User.Identity.Name!</p>
+        <a class="btn btn-danger" href="@Url.Action("Logout", "Account")">Wyloguj się</a>
+    }
+    else
+    {
+        <a class="btn btn-success" href="@Url.Action("Login", "Account")">Zaloguj się przez Google</a>
+    }
+
+    <a class="btn btn-primary" href="@Url.Action("Index", "Masses")">Przejdź do rezerwacji</a>
+</div>
